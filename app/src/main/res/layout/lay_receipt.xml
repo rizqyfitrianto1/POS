@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <ImageView
+        android:id="@+id/tv_store_logo"
+        android:layout_width="80dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/tv_store_name"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:text="ITC Permata Hijau"
+        android:textColor="@color/colorBlack"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_store_address"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200dp"
+        android:textColor="@color/colorBlack"
+        android:text="Jl. Arteri Permata Hijau Jakarta 12210"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_store_telp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:textColor="@color/colorBlack"
+        android:text="Telp . 021 - 53663672"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="Cashier : "
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receipt_name_cashier"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="Rizqy F"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receipt_date"
+            android:layout_width="match_parent"
+            android:gravity="end"
+            android:textColor="@color/colorBlack"
+            android:text="2019-12-12"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_receipt_id"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="201912120001"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_receipt_time"
+            android:layout_width="match_parent"
+            android:gravity="end"
+            android:textColor="@color/colorBlack"
+            android:text="11:19:01"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorBlack"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/line2"
+        android:layout_above="@+id/view"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_marginStart="5dp"
+            android:text="Subtotal"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_total_price3"
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:textAlignment="textEnd"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_above="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="5dp"
+        android:background="@color/colorBlack"/>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_above="@+id/linear2"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_marginStart="5dp"
+            android:text="Tax"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:text="PPN 10%"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_total_tax"
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:textAlignment="textEnd"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:text="Total"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_total_price2"
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="textEnd"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/line_cash"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                android:text="Cash"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/bayar_cash"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:textAlignment="textEnd"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                android:text="Kembalian"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/kembalian"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:textAlignment="textEnd"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/line_debit"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                android:text="Debit"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:textAlignment="textEnd"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                android:text="ID Card"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_card"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlack"
+                android:layout_width="match_parent"
+                android:textSize="16sp"
+                android:textAlignment="textEnd"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:textColor="@color/colorBlack"
+        android:text="Terima Kasih"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorBlack"/>
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:textColor="@color/colorBlack"
+        android:text="Save The Planet"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:layout_width="250dp"
+        android:textColor="@color/colorBlack"
+        android:text="Mari Kita Kendalikan Penggunaan Kemasan Plastik"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</ScrollView>

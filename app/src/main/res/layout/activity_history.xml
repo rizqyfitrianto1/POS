@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="match_parent"
+    tools:context=".View.HistoryActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Input Tanggal"/>
+
+    <LinearLayout
+        android:layout_marginVertical="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/pick_date"
+            android:layout_width="50dp"
+            android:src="@drawable/ic_date"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YYYY-MM-DD"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:text="Time"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:text="Payment"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:text="Card ID"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:text="Summary"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_above="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="5dp"
+        android:background="@color/colorBlack"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_above="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="5dp"
+        android:background="@color/colorBlack"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Total Gross"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_total_price"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Total Tax"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:text="PPN 10%"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_total_tax"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Total Nett"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_total_nett"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
