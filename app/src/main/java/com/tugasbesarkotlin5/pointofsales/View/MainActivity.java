@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
     FirebaseUser firebaseUser;
     TextView tv_date, tv_sales_by_date, tv_username;
-    CardView btn_cashier, btn_linechart, btn_product, btn_achiev, btn_store, btn_employee;
+    CardView btn_cashier, btn_linechart, btn_product, btn_achiev, btn_store;
     private DatabaseReference database;
     private ArrayList<Transaction> daftarTransaction;
 
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         btn_product = findViewById( R.id.btn_product );
         btn_achiev = findViewById( R.id.btn_achiev );
         btn_store = findViewById( R.id.btn_store );
-        btn_employee = findViewById( R.id.btn_employee );
         tv_date = findViewById( R.id.tv_date );
         tv_sales_by_date = findViewById( R.id.tv_sales_by_date );
         tv_username = findViewById( R.id.tv_username );
@@ -129,13 +128,6 @@ public class MainActivity extends AppCompatActivity {
             }
         } );
 
-        btn_employee.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent( MainActivity.this, EmployeeActivity.class );
-                startActivity( intent );
-            }
-        } );
     }
 
     private void getSBD(String date) {
@@ -177,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity( new Intent( MainActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity( new Intent( MainActivity.this, StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 finish();
                 return true;
             default:

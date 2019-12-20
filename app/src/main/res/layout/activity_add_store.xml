@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.AddStoreActivity">
+
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_pos3"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,10 +19,30 @@
         android:scrollbars="vertical"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="150dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="150dp" />
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_pilih_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pilih logo"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/btn_bg"
+            android:textColor="@color/colorWhite"/>
+
+
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:text="Nama Toko"/>
 
@@ -29,9 +56,9 @@
 
 
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:text="Telepon Toko"/>
 
@@ -44,9 +71,9 @@
             android:textSize="18sp"/>
 
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:text="Alamat Toko"/>
 
@@ -58,31 +85,9 @@
             android:inputType="text"
             android:textSize="18sp"/>
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:text="Logo Toko"/>
-
-        <Button
-            android:id="@+id/btn_pilih_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="pilih"
-            android:background="@drawable/btn_bg"
-            android:textColor="@color/colorWhite"/>
-
-        <ImageView
-            android:id="@+id/img_view"
-            android:layout_width="150dp"
-            android:scaleType="fitXY"
-            android:layout_height="150dp" />
-
         <Button
             android:id="@+id/btn_save"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="save"
@@ -91,4 +96,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

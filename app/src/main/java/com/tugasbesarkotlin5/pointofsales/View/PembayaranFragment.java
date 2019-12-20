@@ -1,24 +1,28 @@
 package com.tugasbesarkotlin5.pointofsales.View;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +34,7 @@ import com.tugasbesarkotlin5.pointofsales.Adapter.ReceiptAdapter;
 import com.tugasbesarkotlin5.pointofsales.Model.Product;
 import com.tugasbesarkotlin5.pointofsales.Model.Store;
 import com.tugasbesarkotlin5.pointofsales.Model.Transaction;
+import com.tugasbesarkotlin5.pointofsales.Model.User;
 import com.tugasbesarkotlin5.pointofsales.R;
 
 import java.text.SimpleDateFormat;
@@ -38,14 +43,14 @@ import java.util.Calendar;
 
 import es.dmoral.toasty.Toasty;
 
-public class PembayaranActivity extends AppCompatActivity {
-
+public class PembayaranFragment extends BottomSheetDialogFragment {
     LinearLayout line_cash,line_debit;
-    TextView tv_total_price;
-    TextView tv_total_price3, tv_total_tax, tv_total_price2,tv_receipt_date,tv_receipt_time,tv_receipt_id,id_card,bayar_cash,kembalian;
+    Button btn_50, btn_100;
+    TextView tv_total_price, tv_kembalian;
+    TextView tv_total_price3, tv_total_tax, tv_total_price2,tv_receipt_date,tv_receipt_time,tv_receipt_id,id_card,bayar_cash,kembalian,tv_receipt_name_cashier;
     ImageView tv_store_logo;
     TextView tv_store_name, tv_store_address, tv_store_telp;
-    Button btn_debit, btn_cash;
+    CardView btn_debit, btn_cash;
     EditText card_number, edt_cash;
     AlertDialog.Builder dialog;
     LayoutInflater inflater;
@@ -57,45 +62,44 @@ public class PembayaranActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_pembayaran );
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate( R.layout.activity_pembayaran, container, false);
+        final String total_harga = this.getArguments().getString("total_bayar");
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
 
-        String total_harga = getIntent().getStringExtra( "total_bayar" );
-        tv_total_price = findViewById( R.id.tv_total_price );
+        tv_total_price = v.findViewById( R.id.tv_total_price );
         tv_total_price.setText( total_harga );
 
-        btn_debit = findViewById( R.id.btn_debit );
+        btn_debit = v.findViewById( R.id.btn_debit );
         btn_debit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String total_harga = getIntent().getStringExtra( "total_bayar" );
                 DialogFormDebit(total_harga);
             }
         } );
 
-        btn_cash = findViewById( R.id.btn_cash );
+        btn_cash = v.findViewById( R.id.btn_cash );
         btn_cash.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String total_harga = getIntent().getStringExtra( "total_bayar" );
                 DialogFormCash(total_harga);
             }
         } );
+        return v;
     }
 
     private void DialogFormDebit(final String total_harga) {
-        dialog = new AlertDialog.Builder(PembayaranActivity.this);
+        dialog = new AlertDialog.Builder(getActivity());
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.form_debit, null);
         dialog.setView(dialogView);
         dialog.setCancelable(true);
         dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setTitle("Form Pembayaran");
+        dialog.setTitle("ID Card Number:");
 
         card_number  = (EditText) dialogView.findViewById(R.id.card_number);
 
@@ -136,14 +140,14 @@ public class PembayaranActivity extends AppCompatActivity {
     }
 
     private void dialogPrintReceipt(String date, String time, String number_card, String id) {
-        dialog = new AlertDialog.Builder(PembayaranActivity.this);
+        dialog = new AlertDialog.Builder(getActivity());
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.lay_receipt, null);
         dialog.setView(dialogView);
         dialog.setCancelable(false);
 
         recyclerView = dialogView.findViewById(R.id.recyclerview);
-        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
@@ -154,6 +158,7 @@ public class PembayaranActivity extends AppCompatActivity {
         tv_total_tax = dialogView.findViewById( R.id.tv_total_tax );
         tv_total_price2 = dialogView.findViewById( R.id.tv_total_price2 );
         id_card = dialogView.findViewById( R.id.id_card );
+        tv_receipt_name_cashier = dialogView.findViewById( R.id.tv_receipt_name_cashier );
 
         tv_store_name = dialogView.findViewById( R.id.tv_store_name );
         tv_store_address = dialogView.findViewById( R.id.tv_store_address );
@@ -168,7 +173,20 @@ public class PembayaranActivity extends AppCompatActivity {
                 tv_store_name.setText( store.getNama_toko() );
                 tv_store_telp.setText( store.getTelp_toko() );
                 tv_store_address.setText( store.getAlamat() );
-                Glide.with(getApplicationContext()).load(store.getLogo()).into(tv_store_logo);
+                Glide.with(getActivity()).load(store.getLogo()).into(tv_store_logo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+        database.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue( User.class );
+                tv_receipt_name_cashier.setText( user.getUsername() );
             }
 
             @Override
@@ -194,7 +212,7 @@ public class PembayaranActivity extends AppCompatActivity {
                     int t_price = Integer.parseInt(product.getPrice());
                     total_price += t_price;
                 }
-                adapter = new ReceiptAdapter( daftarProduk, PembayaranActivity.this );
+                adapter = new ReceiptAdapter( daftarProduk, getActivity() );
                 recyclerView.setAdapter( adapter );
 
                 tv_total_price3.setText(String.valueOf( total_price ));
@@ -229,9 +247,7 @@ public class PembayaranActivity extends AppCompatActivity {
                         }
                     } );
                 }
-                Intent intent = new Intent( PembayaranActivity.this, CashierActivity.class );
-                startActivity( intent );
-                finish();
+                dismiss();
             }
         });
 
@@ -239,24 +255,40 @@ public class PembayaranActivity extends AppCompatActivity {
     }
 
     private void saveTransactionDebit(final Transaction transaction) {
-        database.child("Transaction").child( transaction.getDate() ).push().setValue(transaction).addOnSuccessListener(this, new OnSuccessListener<Void>() {
+        database.child("Transaction").child( transaction.getDate() ).push().setValue(transaction).addOnSuccessListener( getActivity(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toasty.info( getApplicationContext(),"Printing Receipt ...", Toasty.LENGTH_LONG, true ).show();
+                Toasty.info( getActivity(),"Printing Receipt ...", Toasty.LENGTH_LONG, true ).show();
             }
         });
     }
 
     private void DialogFormCash(final String total_harga) {
-        dialog = new AlertDialog.Builder(PembayaranActivity.this);
+        dialog = new AlertDialog.Builder(getActivity());
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.form_cash, null);
         dialog.setView(dialogView);
         dialog.setCancelable(true);
         dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setTitle("Form Pembayaran");
+        dialog.setTitle("Uang diterima:");
 
         edt_cash  = (EditText) dialogView.findViewById(R.id.edt_cash);
+        btn_50  = (Button) dialogView.findViewById(R.id.btn_50);
+        btn_100  = (Button) dialogView.findViewById(R.id.btn_100);
+
+        btn_50.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edt_cash.setText( "50000" );
+            }
+        } );
+
+        btn_100.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edt_cash.setText( "100000" );
+            }
+        } );
 
         dialog.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
 
@@ -268,7 +300,7 @@ public class PembayaranActivity extends AppCompatActivity {
                 int kembalian = bayar - total;
 
                 if (kembalian < 0){
-                    Toasty.warning( getApplicationContext(),"Masukkan nominal lebih besar", Toasty.LENGTH_SHORT, true ).show();
+                    Toasty.warning( getActivity(),"Masukkan nominal lebih besar", Toasty.LENGTH_SHORT, true ).show();
                     return;
                 }else {
                     String total_kembalian = String.valueOf( kembalian );
@@ -305,7 +337,7 @@ public class PembayaranActivity extends AppCompatActivity {
     }
 
     private void saveTransactionCash(Transaction transaction) {
-        database.child("Transaction").child( transaction.getDate() ).push().setValue(transaction).addOnSuccessListener(this, new OnSuccessListener<Void>() {
+        database.child("Transaction").child( transaction.getDate() ).push().setValue(transaction).addOnSuccessListener(getActivity(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
             }
@@ -313,32 +345,34 @@ public class PembayaranActivity extends AppCompatActivity {
     }
 
     private void dialogKembalian(final String cash, final String date, final String time, final String id2, final String total_kembalian) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder( this);
-        alertDialogBuilder.setTitle("Kembalian:");
-        alertDialogBuilder
-                .setMessage(cash)
-                .setIcon(R.mipmap.ic_launcher)
-                .setCancelable(false)
-                .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        Toasty.info( getApplicationContext(),"Printing Receipt ...", Toasty.LENGTH_LONG, true ).show();
-                        dialogPrintReceiptCash(date,time,total_kembalian,id2,cash);
-                        dialog.dismiss();
-                    }
-                });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        dialog = new AlertDialog.Builder(getActivity());
+        inflater = getLayoutInflater();
+        dialogView = inflater.inflate(R.layout.form_kembalian, null);
+        dialog.setView(dialogView);
+        dialog.setCancelable(false);
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setTitle("Kembalian:");
+        tv_kembalian  = (TextView) dialogView.findViewById(R.id.tv_kembalian);
+        tv_kembalian.setText( cash );
+        dialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int id) {
+                Toasty.info( getActivity(),"Printing Receipt ...", Toasty.LENGTH_LONG, true ).show();
+                dialogPrintReceiptCash(date,time,total_kembalian,id2,cash);
+                dialog.dismiss();
+                }
+            });
+        dialog.show();
     }
 
     private void dialogPrintReceiptCash(String date, String time, String total_kembalian, String id2, String cash) {
-        dialog = new AlertDialog.Builder(PembayaranActivity.this);
+        dialog = new AlertDialog.Builder(getActivity());
         inflater = getLayoutInflater();
         dialogView = inflater.inflate(R.layout.lay_receipt, null);
         dialog.setView(dialogView);
         dialog.setCancelable(false);
 
         recyclerView = dialogView.findViewById(R.id.recyclerview);
-        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
@@ -352,6 +386,7 @@ public class PembayaranActivity extends AppCompatActivity {
         tv_total_price2 = dialogView.findViewById( R.id.tv_total_price2 );
         bayar_cash = dialogView.findViewById( R.id.bayar_cash );
         kembalian = dialogView.findViewById( R.id.kembalian );
+        tv_receipt_name_cashier = dialogView.findViewById( R.id.tv_receipt_name_cashier );
 
         line_cash.setVisibility( View.VISIBLE );
         line_debit.setVisibility( View.GONE );
@@ -369,7 +404,20 @@ public class PembayaranActivity extends AppCompatActivity {
                 tv_store_name.setText( store.getNama_toko() );
                 tv_store_telp.setText( store.getTelp_toko() );
                 tv_store_address.setText( store.getAlamat() );
-                Glide.with(getApplicationContext()).load(store.getLogo()).into(tv_store_logo);
+                Glide.with(getActivity()).load(store.getLogo()).into(tv_store_logo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+        database.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue( User.class );
+                tv_receipt_name_cashier.setText( user.getUsername() );
             }
 
             @Override
@@ -396,7 +444,7 @@ public class PembayaranActivity extends AppCompatActivity {
                     int t_price = Integer.parseInt(product.getPrice());
                     total_price += t_price;
                 }
-                adapter = new ReceiptAdapter( daftarProduk, PembayaranActivity.this );
+                adapter = new ReceiptAdapter( daftarProduk, getActivity() );
                 recyclerView.setAdapter( adapter );
 
                 tv_total_price3.setText(String.valueOf( total_price ));
@@ -430,9 +478,7 @@ public class PembayaranActivity extends AppCompatActivity {
                         }
                     } );
                 }
-                Intent intent = new Intent( PembayaranActivity.this, CashierActivity.class );
-                startActivity( intent );
-                finish();
+                dismiss();
             }
         });
 

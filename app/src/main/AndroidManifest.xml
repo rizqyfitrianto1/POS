@@ -9,19 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.EmployeeActivity"></activity>
         <activity android:name=".View.EditStoreActivity" />
         <activity android:name=".View.StoreActivity" />
-        <activity android:name=".View.RegisterActivity" />
         <activity android:name=".View.AddStoreActivity" />
         <activity android:name=".View.MainActivity" />
         <activity android:name=".View.AchievementActivity" />
         <activity android:name=".View.ProductListActivity" />
         <activity android:name=".View.HistoryActivity" />
-        <activity android:name=".View.PembayaranActivity" />
         <activity android:name=".View.CashierActivity" />
         <activity
-            android:name=".View.LoginActivity"
+            android:name=".View.StartActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

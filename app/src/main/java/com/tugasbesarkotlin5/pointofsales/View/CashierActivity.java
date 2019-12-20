@@ -199,9 +199,12 @@ public class CashierActivity extends AppCompatActivity {
             return;
         }else {
             String total_bayar = tv_total_price2.getText().toString();
-            Intent intent = new Intent( CashierActivity.this, PembayaranActivity.class );
-            intent.putExtra( "total_bayar", total_bayar );
-            startActivity( intent );
+
+            PembayaranFragment bottomSheet = new PembayaranFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("total_bayar", total_bayar);
+            bottomSheet.setArguments( bundle );
+            bottomSheet.show(getSupportFragmentManager(), "exampleBottomSheet");
         }
     }
 }
