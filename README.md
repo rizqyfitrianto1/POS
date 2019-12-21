@@ -1,5 +1,5 @@
 # POS
-Aplikasi Point of Sale (Firebase)
+Aplikasi Point of Sale (Firebase + Barcode Scanner)
 
 <table >
   <tr>
