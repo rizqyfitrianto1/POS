@@ -29,8 +29,8 @@ Aplikasi Point of Sale (Firebase + Barcode Scanner)
   <tr>
     <td align="left"><img src="https://user-images.githubusercontent.com/54391306/71304322-9d3aeb80-23f7-11ea-912a-d61ec2b9dbaa.jpeg" width="150" height="300"></td>
     <td align="right"><img src="https://user-images.githubusercontent.com/54391306/71304329-af1c8e80-23f7-11ea-904b-72dbc3f98ff8.jpeg" width="150" height="300"></td>
-    <td align="left"><img src="" width="150" height="300"></td>
-    <td align="left"><img src="" width="150" height="300"></td>
+    <td align="left"><img src="https://user-images.githubusercontent.com/54391306/71304374-4681e180-23f8-11ea-857f-92dd927efe8c.jpeg" width="150" height="300"></td>
+    <td align="left"><img src="https://user-images.githubusercontent.com/54391306/71304382-60232900-23f8-11ea-8f37-e80a59f147b5.jpeg" width="150" height="300"></td>
     <td align="left"><img src="" width="150" height="300"></td>
   </tr>
 </table>
@@ -44,7 +44,7 @@ Aplikasi Point of Sale (Firebase + Barcode Scanner)
     <th align="center">History Transaction</th>
   </tr>
   <tr>
-    <td align="left"><img src="" width="150" height="300"></td>
+    <td align="left"><img src="https://user-images.githubusercontent.com/54391306/71304398-b1cbb380-23f8-11ea-847c-078355966d8b.jpeg" width="150" height="300"></td>
     <td align="right"><img src="" width="150" height="300"></td>
     <td align="left"><img src="" width="150" height="300"></td>
     <td align="left"><img src="" width="150" height="300"></td>
